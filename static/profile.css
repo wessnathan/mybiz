@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,500;1,600&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*  Text tyles */
+
+div.details h3{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin: 10px 5px;
+}
+
+div.profile-links{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.profile-links a{
+    margin: 10px 5px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+
+.p-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    background: #001515;
+    background: -webkit-radial-gradient(center, #001515, #0C1519);
+    background: -moz-radial-gradient(center, #001515, #0C1519);
+    background: radial-gradient(ellipse at center, #001515, #0C1519);
+    overflow-x: hidden;
+    
+}
+
+
+.content{
+    width: 40vw;
+    background: #ffffff;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 10px 15px;
+    height: 50vh;
+    overflow-y: scroll;
+    
+    
+}
+
+div.content-bio{
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #212121;
+    color: #ffffff;
+}
+
+.profile, .content{
+    min-height: 60vh;
+}
+
+.content{
+    float: left;
+    text-align: left;
+}
+
+.profile img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+
+@media (max-width:620px){
+    .p-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        position: relative;
+    }
+
+
+    .content{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 60vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px;
+        flex-wrap: wrap;
+        
+    }
+
+    .profile{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+    .profile img{
+        max-height: 150px;
+        min-width: 150px;
+    }
+}

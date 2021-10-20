@@ -1,0 +1,231 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>myBiz</title>
+</head>
+<body>
+    <div class="container">
+        <div class="section main" id="main-content-pg">
+            <img src="../../media/background/b3.jpg" alt="">
+            <div class="menu-btn">
+                <input type="checkbox" id="check">
+                <label for="check">
+                    <div class="menubars" onclick="middleBar()" id="menuID">
+                        <div class="bar one" id="bar-one"></div>
+                        <div class="bar two " id="bar-two"></div>
+                        <div class="bar three" id="bar-three"></div>
+                    </div>
+                </label>
+                <nav id="nav-bar">
+                    <li><a href="#main-content-pg" onclick="closeMenu()">HOME</a></li>
+                    <li><a href="#mid-content-pg2" onclick="closeMenu()">SERVICES</a></li>
+                    <li><a href="#about-us-contact" onclick="closeMenu()">CONTACT US</a></li>
+                    <li><a href="#about-us-contact" onclick="closeMenu()">ABOUT US</a></li>
+                    <li><a href="{% url 'login' %}" onclick="closeMenu()">LOGIN</a></li>
+                    
+                </nav>
+                
+            </div>
+            
+            <div class="content">
+                <div class="main-info">
+                    <div class="info-1">
+                        <h2>Introduction to our site what it does</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, officia dolorem 
+                            voluptate vitae nemo quis ab sed voluptatem fuga ea aliquam perspiciatis. 
+                            Numquam tenetur inventore corrupti?
+                            Non asperiores nostrum vitae doloribus ab nobis illo praesentium quos, 
+                            animi repellat ullam ratione?
+                        </p>
+                    </div>
+                    <div class="log-sign-in">
+                        <p>Sign up or I f already have an Account Login.!!!</p>
+                        <div class="buts">
+                            <a href="{% url 'register' %}" >Sign Up</a>
+                            <a href="{% url 'login' %}">Login</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="landing-image">
+                    <img src=" ../../../../media/images/m2.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="section middle middle-content" id="mid-content-pg2">
+            <div class="left" >
+                <div class="slider active">
+                    <img src="../../media/images/slide1.jpg" alt="">
+                    <div class="left-info">
+                        <h2>Small paragraph first</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure non laudantium tenetur eum m
+                            axime laboriosam corporis perferen
+                            dis! Quae dolores aperiam fuga cum corporis error, aliquid sapiente facere quaerat voluptatibus hic?
+                        </p>
+                    </div>
+                </div>
+                <div class="slider">
+                    <img src="../../media/images/slide2.jpg" alt="">
+                    <div class="left-info">
+                        <h2>Small paragraph</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure non laudantium tenetur eum m
+                            axime laboriosam corporis perferen
+                            dis! Quae dolores aperiam fuga cum corporis error, aliquid sapiente facere quaerat voluptatibus hic?
+                        </p>
+                    </div>
+                </div>
+                <div class="slider">
+                    <img src="../../media/images/slide3.jpg" alt="">
+                    <div class="left-info">
+                        <h2>Small paragraph third</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure non laudantium tenetur eum m
+                            axime laboriosam corporis perferen
+                            dis! Quae dolores aperiam fuga cum corporis error, aliquid sapiente facere quaerat voluptatibus hic?
+                        </p>
+                    </div>
+                </div>
+                <div class="slider">
+                    <img src="../../media/images/slide4.jpg" alt="">
+                    <div class="left-info">
+                        <h2>Small paragraph last</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure non laudantium tenetur eum m
+                            axime laboriosam corporis perferen
+                            dis! Quae dolores aperiam fuga cum corporis error, aliquid sapiente facere quaerat voluptatibus hic?
+                        </p>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <div class="btn active"></div>
+                    <div class="btn"></div>
+                    <div class="btn"></div>
+                    <div class="btn"></div>
+                </div>
+                
+            </div>
+            <div class="right"></div>
+        </div>
+        <div class="section bottom" id="about-us-contact">
+            <div class="about-contact">
+                
+                <div class="about">
+                    
+                    <div class="abt-left">
+                        <h2>Lorem ipsum dolor sit amet.</h2>
+                        <div class="abt-c">
+                            
+                            <div class="abt-ico">
+                                <li><i class="fa fa-fighter-jet" aria-hidden="true"></i>Easy and Faster Access</li>
+                                <li><i class="fa fa-grav" aria-hidden="true"></i>Stable and Reliable</li>
+                                <li><i class="fa fa-cloud" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-spinner" aria-hidden="true"></i></li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="abt-right">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Cumque, repudiandae expedita. Culpa amet beatae dolore necessitatibus ad, 
+                            voluptatem consectetur eum? Totam a, repellendus delectus odio maxime assumenda 
+                            excepturi quam corporis sed impedit quas facere. Quibusdam recusandae illum vitae quisquam sed?
+                        </p>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="contact-box">
+                        <form action="">
+                        <h3>Feel Free To Get In Touch With US</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, cupiditate?</p>
+                            <div class="inpt">
+                                <input type="text" placeholder="Phone Number --Optional" >
+                            </div>
+                            <div class="inpt">
+                                <input type="text" placeholder="Enter Your Email" required>
+                            </div>
+                            <div class="inpt">
+                                <input type="text" placeholder="Enter Subject" required>
+                            </div>
+                            <textarea name="msg" id="" ></textarea>
+                            <button type="submit">Send</button>
+                        </form>
+                        <div class="address">
+                            <div class="add">
+                                <div class="icn">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <label>
+                                    Find Us AT
+                                </label>
+                            </div>
+                            <div class="add">
+                                <div class="icn"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                                <label> 075xxxxx05</label>
+                            </div>
+                            <div class="add">
+                                <div class="icn">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <label>
+                                    Nairobi,Kenya
+                                </label>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var slides = document.querySelectorAll(".slider");
+        var btn = document.querySelectorAll(".btn");
+
+        
+
+        let currentSlide = 1;
+
+        function  middleBar() {
+            var element = document.getElementById("bar-two");
+            let addWidth = document.getElementById("bar-one");
+            let addWidth1 = document.getElementById("bar-three");
+
+            addWidth.style.width = "30px";
+            addWidth1.style.width = "30px";
+
+            addWidth.classList.add("menustyle")
+            addWidth1.classList.add("menustyle")
+            //element.classList.add("mystyle");
+            element.remove();
+        }
+        function  closeMenu() {
+            var lnk = document.getElementById("check").checked = false;
+        }
+        var manualNav = function(manual){
+            slides.forEach((slide)=>{
+                slide.classList.remove('active');
+                btn.forEach((btns)=>{
+                    btns.classList.remove('active');
+                });
+            });
+
+            slides[manual].classList.add('active');
+            btn[manual].classList.add('active');
+        }
+
+        btn.forEach((btn, i)=>{
+            btn.addEventListener("click", ()=>{
+                manualNav(i);
+                currentSlide = i;
+            });
+        } );
+    
+    </script>
+</body>
+</html>

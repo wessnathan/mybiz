@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% for title in myuser %}
+    <title>MyBiz - {{title.bussiness_Name}}</title>
+    {% endfor %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'default/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'default/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'default/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'icon.css' %}">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'default/css/tooplate-gymso-style.css' %}">
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+    {% for post in myuser %}
+
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand" href="#home" id="title1"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link smoothScroll">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link smoothScroll">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#class" class="nav-link smoothScroll">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link smoothScroll">Contact</a>
+                    </li>
+                    {% if user.is_authenticated and post.bussiness_Owner == user %}
+                        <li class="nav-item">
+                            <a href="{% url 'myBizUpdate' post.id %}" class="nav-link smoothScroll">Update Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'dashboard' %}" class="nav-link smoothScroll">My Dashboard</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero d-flex flex-column justify-content-center align-items-center" id="home"  style="background: url({{post.bussiness_Background_Image.url}});background-size: cover; background-position: top; background-repeat: no-repeat; vertical-align: middle;">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 mx-auto col-12">
+                            <div class="hero-text mt-5 text-center">
+                                    <h6 data-aos="fade-up" data-aos-delay="300" id="intro1"> </h6>
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500" id="intro2">Post and Update Information About your Bussiness</h1>
+                                    <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
+                                    <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">learn more</a>
+                                    {% if post.bussiness_Owner == user and user.is_authenticated %}
+                                        <a href="{% url 'myBizDelete' post.id %}" class="btn bordered custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Delete Page</a>
+                                    {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    </section>
+
+
+
+    <section class="feature" id="feature">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                    <h2 class="mb-3 text-white" data-aos="fade-up">Looking for a product or service</h2>
+                    <h6 class="mb-4 text-white" data-aos="fade-up" id="desc1">small description about biz. <br> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta nam facere, pariatur sit dolores sed nisi exercitat</h6> 
+                    <p data-aos="fade-up" data-aos-delay="200" id="desc2">{{post.bussiness_Description}}</p>
+                    <!--a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">Become a member today</a-->
+                </div>
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                    <div class="about-working-hours">
+                        <div>
+                                <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Working hours</h2>
+                                <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">{{post.week_day}}</strong>
+                                <p data-aos="fade-up" data-aos-delay="800">{{post.time}}</p>
+                                <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">{{post.weekend}}</strong>
+                                <p data-aos="fade-up" data-aos-delay="800">{{post.weekend_opens}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+                <div class="container">
+                    <div class="row">
+                            <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
+                                <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300" id="abt-name">About {{post.bussiness_Name}}</h2>
+                                <p data-aos="fade-up" data-aos-delay="400" id="abt-desc">{{post.bussiness_Description}}</p>
+                            </div>
+                            <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">
+                                <div class="team-thumb">
+                                    <img src="{{post.image_of_bussiness.url}}" class="img-fluid" alt="Trainer" id="bizPhoto">
+                                    <div class="team-info d-flex flex-column">
+                                        <h3 id="bizPhoto-desc">Name of Biz{{object.bussiness_Name}}</h3>
+                                        <span>Location</span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="800">
+                                <div class="team-thumb">
+                                    <img src="{{post.image_of_manager.url}}" class="img-fluid" alt="Trainer" id="managerPhoto">
+                                    <div class="team-info d-flex flex-column">
+                                        <h3 id="managerPhoto-desc">Name of Owner/CEO</h3>
+                                        <span>Position</span>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+    </section>
+
+
+    <!-- CLASS -->
+    <section class="class section" id="class">
+                <div class="container">
+                    <div class="row">
+                            <div class="col-lg-12 col-12 text-center mb-5">
+                                <h6 data-aos="fade-up">{{post.bussiness_Name}} Services</h6>
+                                <h2 data-aos="fade-up" data-aos-delay="200">These are the service offered here</h2>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300" id="services">
+                                <div class="class-thumb">
+                                    <img src="" class="img-fluid" alt="Class">
+                                    <div class="class-info">
+                                        <h3 class="mb-1">Name of Service </h3>
+                                        <span class="class-price">01</span>
+                                        <p class="mt-3"> small description about service. Lorem ipsum dolor sit amet, consectetur adipiscing. Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="340">
+                                <div class="class-thumb">
+                                    <img src="" class="img-fluid" alt="Class">
+
+                                    <div class="class-info">
+                                        <h3 class="mb-1">Service</h3>
+                                        <span class="class-price">02</span>
+                                        <p class="mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, aut? Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="380">
+                                <div class="class-thumb">
+                                    <img src="" class="img-fluid" alt="Class">
+                                    <div class="class-info">
+                                        <h3 class="mb-1">Service</h3>
+                                        <span class="class-price">03</span>
+                                        <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact section" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="ml-auto col-lg-5 col-md-6 col-12">
+                        <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel free to ask anything<h2>
+                        <form action="{% url 'mybiz_user_email' %}" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" name="cf-name" placeholder="Name">
+                            <input type="email" class="form-control" name="cf-email" placeholder="Email">
+                            <textarea class="form-control" rows="5" name="cf-message" placeholder="Message"></textarea>
+                            <button type="submit" class="form-control" id="submit-button" name="submit">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
+                        <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">Where you can <span>find us</span></h2>
+                        <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> 120-240 Rio de Janeiro - State of Rio de Janeiro, Brazil</p>
+                        <div class="google-map" data-aos="fade-up" data-aos-delay="900">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8171113.9945477!2d33.40717864476109!3d0.16510471248853426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182780d08350900f%3A0x403b0eb0a1976dd9!2sKenya!5e0!3m2!1sen!2ske!4v1634723968510!5m2!1sen!2ske" width="450" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="ml-auto col-lg-4 col-md-5 social">
+                        <a href="https://web.facebook.com/{{post.bussiness_Facebook}}" class="m-2"><i class="fa fa-facebook  " id="fb" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/{{post.bussiness_Instagram}}" class="m-2"><i class="fa fa-instagram " id="insta" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/{{post.bussiness_Linkedin}}" class="m-2"><i class="fa fa-linkedin  " id="lk" aria-hidden="true"></i></a>
+                        <a href="https://wa.me/{{post.bussiness_Whatsapp}}?text=Hello!!☺" class="m-2"><i class="fa fa-whatsapp  " id="tsap" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="ml-auto col-lg-4 col-md-5">
+                        <p class="copyright-text">Copyright &copy; {{post.bussiness_Name}} {{user.date_joined}}
+                        
+                    </div>
+                    <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+                        <p class="mr-4">
+                            <i class="fa fa-envelope-o mr-1"></i>
+                            <a href="#">{{post.bussiness_Email}}</a>
+                        </p>
+                        <p><i class="fa fa-phone mr-1"></i> {{post.bussiness_Whatsapp}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+    </footer>
+    <!-- SCRIPTS -->
+
+    <script>
+        let homepg = document.getElementById('home');
+        let titleLink = document.getElementById('title1');
+        let landing1 = document.getElementById('intro1');
+        let landing2 = document.getElementById('intro2');
+
+        //load a background each user has uploaded
+        //" style="background: url({{post.bussiness_Home.url}});background-size: cover; background-position: top; background-repeat: no-repeat; vertical-align: middle;"
+
+        landingPage()
+        
+        function landingPage(){
+                fetch('http://127.0.0.1:8000/myBizDetails/{{post.id}}/')
+                .then(response => {
+                        return response.json();
+                }).then(data => {
+                        // Work with JSON data here
+                        
+                        titleLink.innerHTML += data.bussiness_Name;
+                        landing1.innerHTML += data.bussiness_Type;
+                        //homepg.style.background = "url('/media/{{post.bussiness_Home}}')";
+                })
+        }
+    </script>
+
+    <script src="{% static 'default/js/jquery.min.js' %}"></script>
+    <script src="{% static 'default/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'default/js/aos.js' %}"></script>
+    <script src="{% static 'default/js/smoothscroll.js' %}"></script>
+    <script src="{% static 'default/js/custom.js' %}"></script>
+{% endfor %}
+
+</body>
+</html>' 

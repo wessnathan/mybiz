@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block navlink %}
+        <link rel="stylesheet" href="{% static 'userbase.css'%}">
+    {% endblock navlink %}
+
+    {% block content %}
+        <div class="mini top">
+            <h2>Name of Business</h2>
+            <div class="user-info">
+                <span><a href="{% url 'userdetails' user.username %}"><i class="fa fa-user " aria-hidden="true"></i>{{user.username}}</a></span>
+                <span><i class="fa fa-envelope " aria-hidden="true"></i>{{user.email}}</span>
+                <span><i class="fa fa-clock-o" aria-hidden="true"></i>Last Login {{user.last_login}}{{user.is_active}}</span>
+                <span><i class="fa fa-clock-o" aria-hidden="true"></i>Joined {{user.date_joined}}</span>
+            </div>
+        </div>
+        <div class="mini one1">
+            <h1>Details</h1>
+            <div class="dash author"><h3>Created:</h3> <p>Name</p></div>
+            <div class="dash author"><h3>Author:</h3> <p>Name</p></div>
+            <div class="dash author"><h3><a href="{% url 'myBizlist' %}">Posts</a></h3></div>
+        </div>
+        <div class="mini two2">
+            <h1>Description</h1>
+            <div class="desc">
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Accusantium, dolorum. Debitis excepturi explicabo ratione, 
+                    placeat voluptate perferendis dolores tempora eum nihil aut harum 
+                    doloremque est minus assumenda facere sapiente similique aliquid hic! 
+                    Repellat animi nulla obcaecati non q
+                    uibusdam sint eaque, id neque sed nihil maxime, ipsum possimus similique nam! At.
+                </p>
+            </div>
+    {% endblock %}

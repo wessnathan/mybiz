@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,500;1,600&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*  Text tyles */
+
+div.details h3{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin: 10px 5px;
+}
+
+div.profile-links{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.profile-links a{
+    margin: 10px 5px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+
+.p-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: #001515;
+    background: -webkit-radial-gradient(center, #001515, #0C1519);
+    background: -moz-radial-gradient(center, #001515, #0C1519);
+    background: radial-gradient(ellipse at center, #001515, #0C1519);
+    
+}
+
+
+.content{
+    width: 60vw;
+    background: #ffffff;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 10px 15px;
+    height: 80vh;
+    overflow-y: scroll;
+    
+}
+
+
+.profile, .content{
+    min-height: 60vh;
+}
+
+.content{
+    float: left;
+    text-align: left;
+}
+
+.profile img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+textarea#id_bussinessDescription, textarea#id_bussiness_Description, textarea#id_bussinessGoals,textarea#id_bussiness_Goals{
+    width: 100%;
+    min-height: 20vh;
+    height: auto;
+}
+
+
+button{
+    padding: 5px 0;
+    outline: none;
+    border: none;
+    width: 150px;
+    border-radius: 5px;
+}
+
+
+@media (max-width:620px){
+    .p-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        position: relative;
+    }
+
+
+    .content{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px;
+        flex-wrap: wrap;
+        
+    }
+}

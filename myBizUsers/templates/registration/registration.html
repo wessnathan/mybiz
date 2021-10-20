@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Register myBiz</title>
+</head>
+<body>
+    <div class="container1">
+        <div class="sign-up">
+            <div class="title">myBiz registration</div>
+            <a href="../index.html" class="close-btn">Close</a>
+            <!--form-- method="post">
+                {% csrf_token %}
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Username</span>
+                        {% render_field form.username type="text" placeholder='Username' class+="input-field" %}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        {% render_field form.email placeholder="Enter your email address" class+="input-field" %}
+                    </div>
+                    
+                    <div class="pass">
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            {% render_field form.password1 placeholder="Enter your password " class+="input-field p1"  %}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Confirm Password</span>
+                            {% render_field form.password2 placeholder="Confirm  password  " class+="input-field p2"  %}
+                        </div>
+                    </div>
+                    <write your own validation with javascript>
+                    
+                    
+                    <div class="input-box">
+                        <span class="details">Type Of Bussines</span>
+                        <input name="nameBussiness" class="input-field" type="text" placeholder="Enter the type of your Business" required>
+                    </div>
+                </div>
+                
+                <div class="button">
+                    <button class="btn bg-info mt-2" type="submit">Register Now</button>
+                    
+                </div>
+            </form-->
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Register">
+            </form>
+            <div class="login">
+                <p>Already have an account <a href="{% url 'login' %}">Login</a>. Go to <a href="{% url 'home' %}">Home</a> </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--{% block content %}
+
+{% endblock %}-->

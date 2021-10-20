@@ -1,0 +1,42 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <title>myBiz</title>
+</head>
+<body>
+    <div class="p-container">
+        <div class="content">
+            <form method="post" enctype="multipart/form-data">
+                {{ u_form | crispy }}
+                {{ p_form | crispy }}
+                {% csrf_token %}
+                <p><input type="submit" value="Save changes"></p>
+            </form>
+        </div>
+        <div class="profile">
+            {% if user.is_authenticated %}
+                {%if user.userprofile.image.url %}
+                    <img src="{{user.userprofile.image.url }}" alt="user profile" >
+                {%endif%}
+                <div class="details">
+                    <h3>{{user.username}}</h3>
+                    <h3>{{user.email}}</h3>
+                    <div class="profile-links">
+                        <a href="{% url 'currentprofile' %}">My Profile</a>
+                        <a href="{% url 'dashboard' %}">Home</a>
+                    </div>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

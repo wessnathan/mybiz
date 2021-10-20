@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <title>myBiz</title>
+</head>
+<body>
+    <div class="p-container">
+        <div class="content">
+            {{user.userprofile.bio}}
+        </div>
+        <div class="profile">
+            <img src="{{user.userprofile.image.url }}" alt="user profile" >
+            <div class="details">
+                <h3>{{user.username}}- {{user.id}}</h3>
+                <h3>{{user.email}}</h3>
+                <div class="profile-links">
+                    <a href="{% url 'dashboard' %}">Home </a>
+                    <a href="{% url 'profile' %}">Update Profile</a>
+                    <a href="{% url 'password_change' %}">Change password</a>
+                    <a href="{% url 'deactivate_user' user_id=user.id %}">Delete Account</a>
+                </div>
+            
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

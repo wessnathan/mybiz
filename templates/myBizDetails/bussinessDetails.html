@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bussiness Details</title>
+</head>
+<body>
+        {% block title %}My Biz{% endblock %}
+        {% block content %}
+            <h1>My Blog</h1>
+            {% for post in myBiz %}
+                <h2>
+                    {{ post.bussinessType }}
+                    {{ post.bussinessName }}
+                    {{ post.created }}
+                </a>
+                </h2>
+                <p class="date">
+                Published {{ post.publish }} by {{ post.bussinessOwner }}
+                </p>
+                {{ post.bussinessDescription|truncatewords:30|linebreaks }}
+            {% endfor %}
+            {% for products in  myProducts %}
+                <h2>
+                    {{ products.id }}
+                    {{ products.productName }}
+                
+                </a>
+                </h2>
+                <p class="date">
+                Published {{ products.productName }} by {{ products.productDescription }}
+                </p>
+            {% endfor %}
+            {% for links in  mySocialMedia %}
+                <h2>Social Media</h2>
+                    {{links.facebook }}
+                    {{links.whatsapp}}
+                    {{links.instagram}}
+                    {{links.email}}
+                <p class="date">
+                </p>
+            {% endfor %}
+        {% endblock %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'mybizform.css' %}">
+    <title>myBiz</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <div class="p-container">
+            <div class="content">
+                <form method="post" enctype="multipart/form-data">
+                    {{ form | crispy }}
+                    {% csrf_token %}
+                    <div class="buts">
+                    <button class=" btn bg-success text-light " type="submit">CREATE MyBiz</button>
+                    <button class="bg-danger text-light"><a href="{% url 'userdetails' user.username %}" class="text-light mt-1" id="btn-cancel" style="text-decoration: none;">CANCEL</a></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</body>
+</html>
