@@ -93,6 +93,13 @@ div.content-bio{
     object-fit: cover;
 }
 
+div.delete-info{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 3px 15px;
+}
+
 
 @media (max-width:620px){
     .p-container{

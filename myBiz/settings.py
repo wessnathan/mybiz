@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from . import cred 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -148,8 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT ='587'
-EMAIL_HOST_USER = 'mybizcentre01@gmail.com'
-EMAIL_HOST_PASSWORD ='@My_B1z!Ke*2021' #mybizemaillpass --> @My_B1z!Ke*2021
+EMAIL_HOST_USER = cred.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD ='rzgprmayvvtrzfni'
 EMAIL_USE_TLS =True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'mybizcentre01@gmail.com'

@@ -37,6 +37,8 @@ class BizDetails(models.Model):
     bussiness_Whatsapp = models.CharField(max_length=12, default='+2547 ')
     bussiness_Linkedin = models.CharField(max_length=100, default=' ')
     bussiness_Email = models.EmailField( default=' ')
+    bussiness_Address = models.CharField(max_length=50, default=' ')
+    bussiness_Location = models.CharField(max_length=50, default='Nairobi,Kenya ')
     bussiness_Background_Image = models.ImageField(default='homepage/bs4.jpg', upload_to='homepage/')
     image_of_bussiness = models.ImageField(default='bussiness/default.jpg', upload_to='bussiness/')
     image_of_manager = models.ImageField(default='manager/default.jpg', upload_to='manager/')

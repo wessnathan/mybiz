@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from myBiz.settings import EMAIL_HOST_USER
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from rest_framework.decorators import api_view
@@ -23,20 +24,22 @@ def myBizView(request):
 
 #send email to the owner of the bussiness
 
+#userEmail = self.request.user.email
 
-def mybiz_user_email(request, userEmail):
+def mybiz_user_email(request):
     
     if request.method == "POST":
         name = request.POST['cf-name']
         email = request.POST['cf-email']
         message = request.POST['cf-message']
         
+        
         if name and email and message:
             try:
-                send_mail(name, message, email, [userEmail])
+                send_mail(name, message, email, ['mybizcentre01@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            return HttpResponseRedirect('/contact/thanks/')
+            return HttpResponseRedirect('/')
         else:
             
             return HttpResponse('Make sure all fields are entered and valid.')

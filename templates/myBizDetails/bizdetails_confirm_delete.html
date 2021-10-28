@@ -1,38 +1,45 @@
 {% load crispy_forms_tags %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'profile.css' %}">
-    <title>myBiz</title>
+    <title>Delete your Account</title>
+    <link rel="stylesheet" href="{% static 'delete.css' %}">
+
 </head>
 <body>
-    {% if user.is_authenticated %}
-        <div class="p-container">
-            <div class="content">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="delete-info">
-                        {{object.bussiness_Name}}
-                        {{object.bussiness_Type}}
-                        {{object.bussiness_Email}}
-                        {{object.bussiness_Crated}}
-
-                    </div>
-                    <div class="delete-btn">
-                        <p><input type="submit" value="Delete {{object.bussiness_Name}}"></p>
-                    <p><a href="{% url 'userdetails' user.username %}">Cancel</a></p>
-                    </div>
-                    
-                </form>
+    <div class="container">
+        <div class="del border col-sm-8 p-4 rounded mt-5">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                        <div class="delete-info ">
+                            <p>Do you really want to delete this Account. <br>
+                                Deleting this page will make you loose all the content you have posted here. <br>
+                                It will log you out and your account will  <span class="font-italic font-weight-bold text-danger">No Longer Exist</span>.
+                            </p>
+                            <ul class="mx-2">
+                                <li class="mx-2">Bussiness Name: {{object.bussiness_Name}}</li>
+                                <li class="mx-2">Bussiness Type: {{object.bussiness_Type}}</li>
+                                <li class="mx-2">Bussiness Email: {{object.bussiness_Email}}</li>
+                                <li class="mx-2">Bussiness Owner: {{object.bussiness_Owner}}</li>
+                                <li class="mx-2">Bussiness Created: {{user.date_joined}}</li>
+                            </ul>
+                                
+                        </div>
+            </form>
+            <div class="bts">
+            <input class="btn btn-outline-danger bg-danger text-light" type="submit" value="Yes, Delete {{object.bussiness_Name}}">
+                        <a class="btn btn-outline-success bg-success mx-auto text-light" href="{% url 'userdetails' user.username %}">No, Cancel</a>
             </div>
         </div>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
