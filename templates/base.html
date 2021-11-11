@@ -1,86 +1,80 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'userbase.css'%}">
-    {% block navlink %}
-    {% endblock navlink %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>myBiz</title>
-</head>
-    <body>
-        {% if user.is_authenticated %}
-            <div class="container bg" id="main-pg">
-                <button class="menuicon" id="menu-btn">
-                    <span class="bar" id="bar-1"></span>
-                    <span class="bar" id="bar-2"></span>
-                    <span class="bar" id="bar-3"></span>
-                </button>
-                <!--button class="theme" id="mode-set">
-                    <span>&#x263C;</span>
-                </button-->
-                <nav class="menubar" id="menu">
-                    
-                    
-                        <a href="{% url 'dashboard' %}" class="nav-link">Home</a>
-                        <a href="{% url 'userdetails' user.username %}" class="nav-link">My Web Page</a>
-                        {% block nav %}
-                            <a href="{% url 'currentprofile' %}" class="nav-link">Profile</a>
-                            <a href="#link" class="nav-link">Links</a>
-                            <a href="#link" class="nav-link">Contact</a>
-                        {% endblock %}
-                        <a href="#link" class="nav-link">About</a>
-                        <a href="{% url 'logout' %}">Logout</a>
-                    
-                </nav>
-                <div class="dashboard">
-                    <div class="menu-container">
-                        {% block content %}
-                        {% endblock content %}
-                    </div>
-                    
-                </div>
-                <div class="plus-btns">
-                    <button class="btn three"><a href="{% url 'myBiz' %}"><i class="fa fa-file-text fa-1x" aria-hidden="true"></i>Create</a></button>
-                    <button class="btn four"><i class="fa fa-link fa-1x" aria-hidden="true"></i></button>
-                </div>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-            {% endif %}
-        </div>
-        <script>
-            //Responsive menu toggling
-            let mainPage = document.querySelectorAll (".container .bg");
-            const menuBarButton = document.getElementById("menu-btn");
-            const navbar = document.getElementById("menu");
-            let navBarLinks = navbar.querySelectorAll(".nav-link");
-            let themeSet = document.getElementById("mode-set")
-    
-    
-            menuBarButton.addEventListener("click", function(){
-                menuBarButton.classList.toggle("active");
-                navbar.classList.toggle("active");
-                themeSet.classList.toggle("active");
-    
-            })
-    
-            navBarLinks.forEach(link=> link.addEventListener("click", function(){
-                menuBarButton.classList.remove("active");
-                navbar.classList.remove("active");
-                themeSet.classList.remove("active");
-            }));
-    
-            //change theme
-            themeSet.addEventListener("click", function(){
-                mainPage.classList.remove("bg");
-                mainPage.classList.toggle("bg-dark");
-                console.log(mainPage)
-            })
-        </script>
-    </body>
-    </html>
-    
 
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="./img/favicon.ico">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'index/images/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'index/images/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'index/images/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'index/images/site.webmanifest' %}">
+        <link href="{% static 'index/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="icon" href="{% static 'index/images/favicon.ico' %}">
+        <link href="{% static 'index/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'offcanvas.css' %}" rel="stylesheet">
+        {% block navlink %}
+        <title>MyBiz</title>
+        {% endblock navlink %}
+    </head>
+<body class="bg-light">
+    {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark mb-3">
+            <a class="navbar-brand" href="#"><span>My</span><img src="{% static 'index/images/main.ico' %}" alt=""><span>Z</span></a>
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'currentprofile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'userdetails' user.username %}">Check My Page</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="\" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-pencil-square-o px-1" aria-hidden="true"></i>Make Your Post</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'myBiz' %}">Post MyBiz</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'service_create' %}">Post Services</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="\" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog px-1" aria-hidden="true"></i>Settings</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Post MyBiz</a>
+                    <a class="dropdown-item" href="#">Post Services</a>
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" href="#">Change Password</a>
+                    <a class="dropdown-item" href="#">Post Services</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out px-1" aria-hidden="true"></i>Logout</a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </nav>
+        {% block content %}
+        
+        {% endblock content %}
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../static/index/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static 'index/assets/js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'index/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'index/assets/js/vendor/holder.min.js' %}"></script>
+    <script src="{% static 'offcanvas.js' %}"></script>
+</body>
+</html>

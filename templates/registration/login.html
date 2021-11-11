@@ -17,6 +17,15 @@
         <div class="sign-up">
             <div class="title">myBiz login</div>
             <a href="{% url 'home' %}" class="close-btn">Close</a>
+            <div class="msg">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} rounded">
+                        {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
             <form method="post">
                 {% csrf_token %}
                 

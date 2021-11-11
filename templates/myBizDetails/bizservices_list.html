@@ -1,0 +1,26 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block navlink %}
+        <title>MyServices</title>
+{% endblock navlink %}
+
+
+{% block content %}
+    <div class="container mt-3 p-4 ">
+        {% for post in myservices %}
+            {% if user.is_authenticated and post.service_id == user %}
+                <div class="container col-10 col-sm-12 border rounded p-2 mb-2">
+                    <h4 class="text-success"><a class="text-success" href="{% url 'service_detail'  post.id %} ">{{post.service_title}}</a></h4>
+                    <div class="service-content d-flex">
+                        <img class="rounded" src="{{post.service_photo.url}}" alt="" width="80px" height="80px">
+                        <p class="mx-1" >{{post.service}}</p>
+                        <a class="text-primary" href="{% url 'service_detail'  post.id %}">more</a>
+                    </div>
+                    
+                </div>
+            
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}

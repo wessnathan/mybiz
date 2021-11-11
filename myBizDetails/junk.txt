@@ -1,0 +1,84 @@
+
+#Services Create, Update and Delete
+class ServicesListView(ListView):
+    models = BizServices
+    #template_name = 'myBizDetails/bizservices_list.html'
+    context_object_name = 'userservices'
+    
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('id'))
+        return BizServices.objects.filter(service_id=user)
+    
+class MyBussinessServicesCreateView(LoginRequiredMixin, CreateView):
+    
+    template_name = 'myBizDetails/services_form.html'
+    form_class = MyBizServicesForm
+    
+    #def form_valid(self, form):
+        #form.instance.bussiness_Owner = self.request.user
+        #return super().form_valid(form)
+    
+class MyBussinessServicesUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    queryset = BizDetails.objects.all()
+    template_name = 'myBizDetails/services_form.html'
+    form_class = MyBizServicesForm
+    
+    
+    def get_absolute_url(self):
+        return reverse('service', kwargs={'pk':self.pk})
+    
+    def form_valid(self, form):
+        form.instance.bussiness_Owner = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        myBizPost = self.get_object()
+        
+        if self.request.user == myBizPost.bussiness_Owner:
+            return True
+        return False
+    
+class MyBizServicesDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    models =BizServices
+    queryset = BizServices.objects.all()
+    success_url = '/'
+    
+    def test_func(self):
+        myBizPost = self.get_object()
+        
+        if self.request.user == myBizPost.bussiness_Owner:
+            return True
+        return False
+
+
+
+
+            {% block contentn %}
+        <!--div class="mini top">
+            <h2>Name of Business</h2>
+            <div class="user-info">
+                <span><a href="{% url 'userdetails' user.username %}"><i class="fa fa-user " aria-hidden="true"></i>{{user.username}}</a></span>
+                <span><i class="fa fa-envelope " aria-hidden="true"></i>{{user.email}}</span>
+                <span><i class="fa fa-clock-o" aria-hidden="true"></i>Last Login {{user.last_login}}{{user.is_active}}</span>
+                <span><i class="fa fa-clock-o" aria-hidden="true"></i>Joined {{user.date_joined}}</span>
+            </div>
+        </div>
+        <div class="mini one1">
+            <h1>Details</h1>
+            <div class="dash author"><h3>Created:</h3> <p>Name</p></div>
+            <div class="dash author"><h3><a href="{% url 'service_list' %}">View Services</a></h3></div>
+            <div class="dash author"><h3><a href="{% url 'myBizlist' %}">Posts</a></h3></div>
+        </div>
+        <div class="mini two2">
+            <h1>Description</h1>
+            <div class="desc">
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Accusantium, dolorum. Debitis excepturi explicabo ratione, 
+                    placeat voluptate perferendis dolores tempora eum nihil aut harum 
+                    doloremque est minus assumenda facere sapiente similique aliquid hic! 
+                    Repellat animi nulla obcaecati non q
+                    uibusdam sint eaque, id neque sed nihil maxime, ipsum possimus similique nam! At.
+                </p>
+            </div-->
+    {% endblock %}

@@ -16,7 +16,7 @@ def registeration(request):
                 
                 form.save()
                 username = form.cleaned_data.get('username')
-                messages.success(request, f'Account created for {username}!You can now login')
+                messages.success(request, f'{username} Your Account has Been Created and Activated!!!!! \n You can now login')
                 return redirect('login')
                 #return redirect('payaccount')
             
@@ -30,6 +30,7 @@ def registeration(request):
 
 
 def dashboard(request):
+    #messages.success(f'{request.user.username} Dashboard')
     return render( request, 'users/dashboard.html')
 
 def account_expiry_timer(t):
@@ -87,7 +88,7 @@ def user_activate(request, user_id):
     user = User.objects.get(pk=user_id)
     user.is_active = True
     user.save()
-    messages.success(request, "User account has been successfully activated!")
+    messages.success(request, f"{request.user} your account has been activated successfully!!!")
     return redirect('home')
 
 '''

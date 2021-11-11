@@ -15,11 +15,20 @@
         <div class="p-container">
             <div class="content">
                 <form method="post" enctype="multipart/form-data">
+                    <div class="bg-white">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}} rounded">
+                                {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     {{ form | crispy }}
                     {% csrf_token %}
                     <div class="buts">
-                    <button class=" btn bg-success text-light " type="submit">CREATE MyBiz</button>
-                    <button class="bg-danger text-light"><a href="{% url 'userdetails' user.username %}" class="text-light mt-1" id="btn-cancel" style="text-decoration: none;">CANCEL</a></button>
+                    <button class=" btn bg-success text-light " type="submit">Post MyBiz</button>
+                    <button class="bg-danger text-light"><a href="{% url 'userdetails' user.username %}" class="text-light mt-1" id="btn-cancel" style="text-decoration: none;">Cancel MyBiz</a></button>
                     </div>
                 </form>
             </div>

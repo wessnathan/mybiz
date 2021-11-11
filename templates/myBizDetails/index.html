@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'index/images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'index/images/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'index/images/favicon-16x16.png' %}">
@@ -30,7 +31,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">FindBiz</a>
+                <a class="nav-link" href="{% url 'myBizlist' %}">FindBiz</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#fn-biz">Contact Us</a>
@@ -57,8 +58,8 @@
             <div class="container">
                 <div class="carousel-caption text-left">
                     <h1 class="text-light">Example headline.</h1>
-                    <p class="text-light">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-outline-success" href="#" role="button">Sign up today</a></p>
+                    <p class="text-light ">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-outline-success" href="{% url 'register' %}" role="button">Sign up today</a></p>
                 </div>
             </div>
         </div>
@@ -101,6 +102,8 @@
                 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
             </div>
             <div class="col-lg-4">
+                <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+
                 <h2>Heading</h2>
                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             </div>
@@ -135,16 +138,21 @@
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
             </div>
             <div class="col-md-5 mt-2" id="fn-biz">
-                <form action="" id="sendMsg">
+                <form action="{% url 'mybiz_user_email' %}" method="post"  id="sendMsg">
+                            {% csrf_token %}
                     <h5>Send Us A Message</h5>
                     <div class="form-group">
+                        <label for="exampleFormControlInput1">Subject</label>
+                        <input type="text" class="form-control"  name="cf-subject" id="exampleFormControlInput1" placeholder="Enter Subject">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleFormControlInput1">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@gmail.com">
+                        <input type="email" class="form-control"  name="cf-email" id="exampleFormControlInput1" placeholder="name@gmail.com">
                     </div>
                     
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="exampleFormControlTextarea1">Type Your Message</label>
+                        <textarea class="form-control" name="cf-message"  id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success col-sm-12">Send</button>
                 </form>
@@ -158,7 +166,7 @@
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p class="d-flex">&copy;<span class="font-weight-bold text-dark text-monospace">My</span><img class="mb-1" src="{% static 'index/images/main.ico' %}" alt=""><span class="font-weight-bold text-dark text-monospace">Z</span> <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
 </main>
 

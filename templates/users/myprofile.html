@@ -10,10 +10,8 @@
 </head>
 <body>
     <div class="p-container">
-        <div class="content">
-            {{user.userprofile.bio}}
-        </div>
-        <div class="profile">
+        
+        <div class="profile col-10">
             <img src="{{user.userprofile.image.url }}" alt="user profile" >
             <div class="details">
                 <h3>{{user.username}}- {{user.id}}</h3>
@@ -23,6 +21,9 @@
                     <a href="{% url 'profile' %}">Update Profile</a>
                     <a href="{% url 'password_change' %}">Change password</a>
                     <a href="{% url 'deactivate_user' user_id=user.id %}">Delete Account</a>
+                    <div class="bio">
+                        {{user.userprofile.bio}}
+                    </div>
                 </div>
             
             </div>

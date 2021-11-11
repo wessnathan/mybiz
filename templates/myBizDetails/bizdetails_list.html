@@ -1,38 +1,151 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'mybizlist.css' %}">
-    <title>MyBiz</title>
-</head>
-<body>
-    <div class="container">
-    
-    {% for post in singleBiz %}
-        <div class="card">
-            <div class="title">
-                <h2><a href="{% url 'myBizDetails' post.pk %}">{{post.bussiness_Name}}</a> </h2>
-                <div class="info">
-                    <h2><a href="{% url 'myBizDetails' post.pk %}">{{post.bussiness_Email}}</a></h2>
-                    <h2>{{post.bussiness_Type}}</h2>
-                    <h2>Contact</h2>
-                </div>
-                <div class="card-body">
-                    <p>
-                        {{post.bussiness_Description}} 
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <div class="likes">likes</div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-    </div>
-</body>
-</html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'index/images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'index/images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'index/images/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'index/images/site.webmanifest' %}">
+    <link href="{% static 'index/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'search.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'index/images/favicon.ico' %}">
+    <link href="{% static 'index/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <title>MyBiz Bussinesses</title>
+  </head>
 
+  <body>
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1 d-flex">
+            <a class="text-muted" href="{% url 'home' %}"><span class="font-weight-bold text-dark text-monospace">My</span><img src="{% static 'index/images/main.ico' %}" alt=""><span class="font-weight-bold text-dark text-monospace">Z</span> Home</a>
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            {% if user.is_authenticated %}
+            <a class="btn btn-sm btn-outline-success mx-1" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+              <a class="btn btn-sm btn-outline-success mx-1" href="{% url 'register' %}">Sign up</a>
+                <a class="btn btn-sm btn-outline-success mx-1" href="{% url 'login' %}">Login</a>
+            {% endif %}
+          </div>
+        </div>
+      </header>
+
+      <div class="nav-scroller py-1 mb-2 " style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <nav class="nav d-flex justify-content-between">
+          <a class="p-2 text-muted breadcrumb-item" href="#">World</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">U.S.</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Technology</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Design</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Culture</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Business</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Politics</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Opinion</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Science</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Health</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Style</a>
+          <a class="p-2 text-muted breadcrumb-item" href="#">Travel</a>
+        </nav>
+      </div>
+      <div class="searchbar my-2 container">
+        <form class="container d-flex fixed" id="searchForm" method="post">
+          {% csrf_token %}
+                <input class="col-sm-8 form-control shadow-none mx-sm-1" type="text" placeholder="Search" id="searchbar">
+                <!--button class="col-sm-0 btn search-btn btn-outline-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button-->  
+        </form>
+        <div class="container mx-2 " id="matchedResults">
+            <div class="col-md-6 px-0" id="tp">
+              <h1 class=" display-4 font-italic" id="view1">Title of a longer featured blog post </h1>
+              <p class=" lead my-3" id="view2">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
+              <p class=" lead mb-0" id="view3"><a href="#" class="text-success font-weight-bold">Continue reading...</a></p>
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <main role="main" class="container ">
+      
+      <div class="row">
+        <div class="col-md-8 blog-main scrollbar scrollbar-success" style="overflow-y: scroll !important;height:100vh !important;">
+          <h3 class="pb-3 mb-4 font-italic border-bottom">
+            
+          </h3>
+          {% for post in singleBiz %}
+            <div class="blog-post">
+              <div class="col-md-10">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <h3 class="mb-0"><a class="text-dark" href="/{{post.slug }}">{{post.bussiness_Name}}</a></h3>
+                    <strong class="d-inline-block mb-2 text-primary"><a href="/{{post.slug }}">{{post.bussiness_Email}}</a></strong>
+                    <div class="mb-1 text-muted">Nov 12</div>
+                    <p class="card-text mb-auto">{{post.bussiness_Info  }}</p>
+                    <a href="#">Continue reading</a>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.blog-post -->
+          {% endfor %}
+        </div><!-- /.blog-main -->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="shadow p-3 mb-3 bg-success rounded">
+            <h4 class="font-italic text-light">About</h4>
+            <p class="mb-0 text-light">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="shadow p-3 mb-3 outline-success rounded">
+            <h4 class="font-italic text-dark">Deals</h4>
+            <p class="mb-0 text-dark">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="p-3">
+            <h4 class="font-italic">Archives</h4>
+            <ol class="list-unstyled mb-0">
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">March 2014</a></li>
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">February 2014</a></li>
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">January 2014</a></li>
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">December 2013</a></li>
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">November 2013</a></li>
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">October 2013</a></li>
+              <li><a class="list-group-item list-group-item-action my-1 border border-success" href="#">September 2013</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </main><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>
+        <a href="#">Contact Us</a>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../static/index/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static 'index/assets/js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'index/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'index/assets/js/vendor/holder.min.js' %}"></script>
+    <script src="{% static 'search.js' %}"></script>
+
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+  </body>
+</html>

@@ -1,36 +1,112 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block navlink %}
-        <link rel="stylesheet" href="{% static 'userbase.css'%}">
-    {% endblock navlink %}
+{% block navlink %}
+        <title>MyDashboard</title>
+{% endblock navlink %}
+{% block content %}
+<div class="nav-scroller bg-white box-shadow mt-3">
+    <nav class="nav nav-underline">
+        <a class="nav-link active" href="#">Dashboard</a>
+        <a class="nav-link" href="#">
+        Notifications
+        <span class="badge badge-pill bg-light align-text-bottom">27</span>
+        </a>
+        <a class="nav-link" href="{% url 'service_list' %}">My Services</a>
+        <a class="nav-link" href="{% url 'myBizlist' %}">Explore</a>
+        <a class="nav-link" href="#">Link</a>
+        
+        
+    </nav>
+</div>
 
-    {% block content %}
-        <div class="mini top">
-            <h2>Name of Business</h2>
-            <div class="user-info">
-                <span><a href="{% url 'userdetails' user.username %}"><i class="fa fa-user " aria-hidden="true"></i>{{user.username}}</a></span>
-                <span><i class="fa fa-envelope " aria-hidden="true"></i>{{user.email}}</span>
-                <span><i class="fa fa-clock-o" aria-hidden="true"></i>Last Login {{user.last_login}}{{user.is_active}}</span>
-                <span><i class="fa fa-clock-o" aria-hidden="true"></i>Joined {{user.date_joined}}</span>
+    <main role="main" class="container">
+        
+            <div class="msg">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} rounded">
+                        {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        
+        <div class="d-flex align-items-center p-3 my-3 text-black-50 bg-light rounded box-shadow">
+            <img class="mr-3 rounded img-rounded img-responsive " src="{{user.userprofile.image.url }}" alt="" width="48" height="48">
+            <div class="lh-100 d-flex">
+                
+                <h6 class="mb-0 text-black lh-100 mx-2">{{user.username }}</h6>
+                <h6 class="mb-0 text-black lh-100 mx-2">{{user.email }}</h6>
+                <small>302</small>
             </div>
         </div>
-        <div class="mini one1">
-            <h1>Details</h1>
-            <div class="dash author"><h3>Created:</h3> <p>Name</p></div>
-            <div class="dash author"><h3>Author:</h3> <p>Name</p></div>
-            <div class="dash author"><h3><a href="{% url 'myBizlist' %}">Posts</a></h3></div>
+        <div class="col-12">
+                <div class="row box-shadow">
+                    <nav class=" col-md-4 d-flex d-md-block bg-light border-right text-white sidebar">
+                        <div class="sidebar-sticky " id="navaccord">
+                            <ul class="nav flex-column" >
+                                
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span ><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                    To Do List
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span ><i class="fa fa-hashtag" aria-hidden="true"></i></span>
+                                    Customize Page
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">
+                                    <span ><i class="fa fa-folder-open" aria-hidden="true"></i></span>
+                                    Edit Page
+                                </a>
+                                </li>
+                                
+                            </ul>
+                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                <span>Others</span>
+                                <a class="d-flex align-items-center text-muted" href="#">
+                                <span data-feather="plus-circle"></span>
+                                </a>
+                            </h6>
+                            <ul class="nav flex-column mb-2">
+                                <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span>
+                                    Download My Data
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span> <i class="fa fa-pie-chart" aria-hidden="true"></i></span>
+                                    Social engagement
+                                    
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span ><i class="fa fa-file-archive-o" aria-hidden="true"></i></span>
+                                    Take Backup
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span><i class="fa fa-cloud-upload" aria-hidden="true"></i></span>
+                                    Upload Backup
+                                </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="col-md-6 ml-sm-auto col-lg-8 pt-3 px-4 " ></div>
+                </div>
         </div>
-        <div class="mini two2">
-            <h1>Description</h1>
-            <div class="desc">
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                    Accusantium, dolorum. Debitis excepturi explicabo ratione, 
-                    placeat voluptate perferendis dolores tempora eum nihil aut harum 
-                    doloremque est minus assumenda facere sapiente similique aliquid hic! 
-                    Repellat animi nulla obcaecati non q
-                    uibusdam sint eaque, id neque sed nihil maxime, ipsum possimus similique nam! At.
-                </p>
-            </div>
-    {% endblock %}
+        
+    </main>
+    <div class=" d-flex align-items-end btn btn-logout mt-5 float-right my-3"><a href="{% url 'logout' %}"><i class="fa fa-sign-out px-1" aria-hidden="true"></i>Logout</a></div>
+{% endblock %}
+

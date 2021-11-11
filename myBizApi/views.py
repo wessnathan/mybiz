@@ -2,10 +2,11 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from myBizDetails.models import BizDetails, BussinessProducts, BusinessTeam
+from rest_framework import serializers
+from myBizDetails.models import BizDetails, BizServices, BussinessProducts, BusinessTeam
 from myBizDetails.models import User
 from django.http import JsonResponse
-from .serializers import BizDetailsSerializer, BussinessProductsSerializer
+from .serializers import BizDetailsSerializer, BussinessProductsSerializer, BizServicesSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -17,6 +18,12 @@ from rest_framework.response import Response
 def bizdetailsList(request):
     bizdetails = BizDetails.objects.all()
     serializer = BizDetailsSerializer(bizdetails, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def bizservicelist(request):
+    bizservices = BizServices.objects.all()
+    serializer = BizServicesSerializer(bizservices, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -37,6 +44,15 @@ def bizDetail(request, pk):
         return HttpResponse
         
 
+@api_view(['GET'])
+def bizservicesDetail(request, pk):
+    try:
+        bizservice =BizServices.objects.get(id=pk)
+        serializer = BizServicesSerializer(bizservice, many=False)
+        return Response(serializer.data)
+    
+    except:
+        return HttpResponse
 
 @api_view(['POST'])
 def myBizCreate(request):

@@ -1,0 +1,23 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block navlink %}
+        <title>MyServices</title>
+{% endblock navlink %}
+
+
+{% block content %}
+    <div class="container mt-3 p-4 ">
+        {% if user.is_authenticated and object.service_id == user %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{object.service_title}}</h5>
+                    <p class="card-text">{{object.service}}</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <a class="btn btn-outline-success" href="{% url 'serviceupdate' object.id %}">Update Service</a>
+                    <a class="btn btn-outline-danger" href="{% url 'servicedelete' object.id %}">Delete Service</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

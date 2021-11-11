@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework import fields, serializers
-from myBizDetails.models import BizDetails, BussinessProducts,BusinessTeam
+from myBizDetails.models import BizDetails, BussinessProducts,BusinessTeam, BizServices
 
 class BizDetailsSerializer(serializers.ModelSerializer):
     
@@ -9,6 +9,13 @@ class BizDetailsSerializer(serializers.ModelSerializer):
         exclude = ('publish','created','updated',)
         #fields = '__all__'
         
+class BizServicesSerializer(serializers.ModelSerializer):
+    
+    
+    class Meta:
+        model = BizServices
+        fields = '__all__'
+    
 class BussinessProductsSerializer(serializers.ModelSerializer):
     
     class Meta:
